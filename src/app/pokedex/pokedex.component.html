@@ -14,13 +14,28 @@
       </form>
     </div>
     <div class="col-md-6">
-      <h3 class="text-center my-4">Pokemon Details:</h3>
-      <p class="text-center">Current weather conditions:</p>
-      <p class="text-center">Temperature in Degrees Celsius:</p>
-      <p class="text-center">Temperature in Degrees Farenheit:</p>
-      <p class="text-center">Feels like in Degrees Celsius:</p>
-      <p class="text-center">Feels like in Degrees Farenheit:</p>
-      <p class="text-center">Location Searched:</p>
+      <div class="details" *ngIf="pokemonFound">
+        <h3 class="text-center my-4">Pokemon Details:</h3>
+        <h5 class="text-left">Name: {{ this.pokemonData?.name | uppercase }}</h5>
+        <img [src]="this.pokemonData?.sprites.front_default" alt="">
+        <img [src]="this.pokemonData?.sprites.back_default" alt="">
+        <h5 class="text-left">Pokedex ID: {{ this.pokemonData?.id }}</h5>
+        <h5 class="text-left">Types:
+            <ul>
+              <li *ngFor="let type of types; let i = index;" [attr.data-index]="i">
+                {{ this.types[i].type.name | titlecase }}</li>
+            </ul>
+          </h5>
+        <h5 class="text-left">Base Experience: {{ this.pokemonData?.base_experience }}</h5>
+        <h5 class="text-left">Abilities:
+          <ul>
+            <li *ngFor="let ability of abilities; let i = index;" [attr.data-index]="i">
+              {{ this.abilities[i].ability.name | titlecase }}</li>
+          </ul>
+        </h5>
+        <h5 class="text-left">Height: {{ this.pokemonData?.height }}</h5>
+        <h5 class="text-left">Weight: {{ this.pokemonData?.weight }}</h5>
+      </div>
     </div>
   </div>
 </div>

@@ -13,6 +13,11 @@ export class PokedexComponent implements OnInit {
   public pokedexSearchForm: FormGroup;
   public pokemonData: any;
 
+  pokemonFound = false;
+
+  public abilities: [];
+  public types: [];
+
   constructor(private formBuilder: FormBuilder, private pokeApiService: PokeApiService) { }
 
   ngOnInit() {
@@ -27,6 +32,13 @@ export class PokedexComponent implements OnInit {
       .subscribe(data => {
         this.pokemonData = data;
         console.log(this.pokemonData);
+
+        this.abilities = data["abilities"];
+        console.log(this.abilities);
+
+        this.types = data["types"];
       });
+
+    this.pokemonFound = true;
   }
 }
